@@ -26,3 +26,6 @@ yarn-error.log*
 # yarn
 yarn.lock
 package-lock.json
+
+# css
+src/**/*.css
