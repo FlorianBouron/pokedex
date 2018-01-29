@@ -4,13 +4,13 @@ import App from "./containers/App";
 import Home from "./containers/Home";
 import PokemonDetails from "./containers/PokemonDetails";
 
-const routes = (store) => {
+const routes = () => {
 
   return (
     <App>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/pokemon/:pokemonName" component={PokemonDetails} />
+        <Route exact path="/" render={props => <Home {...props} />} />
+        <Route path="/pokemon/:pokemonName" render={props => <PokemonDetails {...props} />} />
         <Redirect from='*' to='/' />
       </Switch>
     </App>

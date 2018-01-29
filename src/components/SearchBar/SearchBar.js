@@ -12,6 +12,11 @@ class SearchBar extends Component {
     fetchPokemons();
   }
 
+  handleNewRequest = (request) => {
+    const {history} = this.props;
+    history.push(`/pokemon/${request}`);
+  };
+
   render() {
     const {pokemonsName} = this.props;
     const searchBarText = "Look for a Pokemon";
@@ -23,7 +28,8 @@ class SearchBar extends Component {
           fullWidth={true}
           filter={AutoComplete.fuzzyFilter}
           dataSource={pokemonsName}
-          maxSearchResults={5}/>
+          maxSearchResults={5}
+          onNewRequest={this.handleNewRequest}/>
       </div>
     );
   }
