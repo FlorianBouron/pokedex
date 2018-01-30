@@ -3,26 +3,26 @@ import {connect} from 'react-redux';
 import {Paper, CircularProgress} from 'material-ui';
 import SearchBar from '../../components/SearchBar';
 import PokemonInfo from '../../components/PokemonInfo';
-import {selectors, fetchPokemonByName} from '../../redux/pokemon';
+import {selectors, fetchPokemonByNameOrId} from '../../redux/pokemon';
 import './PokemonDetails.css';
 
 class PokemonDetails extends Component {
 
   componentWillMount () {
-    const {fetchPokemonByName} = this.props;
+    const {fetchPokemonByNameOrId} = this.props;
     const {pokemonName} = this.props.match.params;
-    fetchPokemonByName(pokemonName);
+    fetchPokemonByNameOrId(pokemonName);
   }
 
   render() {
-    const {history, currentPokemon} = this.props;
+    const {history, currentPokemon, fetchPokemonByNameOrId} = this.props;
     return (
       <div className="Pokemon-details-container">
         <SearchBar history={history} />
         <Paper zDepth={1}>
           {currentPokemon ?
           <div className='pokemon-details'>
-            <PokemonInfo pokemon={currentPokemon}/>
+            <PokemonInfo pokemon={currentPokemon} fetchPokemonById={fetchPokemonByNameOrId}/>
           </div> :
           <div className='no-pokemon'>
             <CircularProgress />
@@ -39,5 +39,5 @@ export default connect(
       currentPokemon: selectors.getCurrentPokemon(state),
     }
   ),
-  {fetchPokemonByName}
+  {fetchPokemonByNameOrId}
 )(PokemonDetails);

@@ -33,8 +33,8 @@ export const fetchPokemons = () => {
   };
 };
 
-export const fetchPokemonByName = (name) => {
-  let request = axios.get(`${config.apiUrl}pokemon/${name}`);
+export const fetchPokemonByNameOrId = (nameId) => {
+  let request = axios.get(`${config.apiUrl}pokemon/${nameId}`);
   return dispatch => {
     request
       .then(
