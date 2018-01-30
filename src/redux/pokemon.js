@@ -14,7 +14,7 @@ export const selectors = {
 };
 
 export const fetchPokemons = () => {
-  let request = axios.get(`${config.apiUrl}pokemon/?limit=949`);
+  let request = axios.get(`${config.apiUrl}pokemon/?limit=${config.idMaxOfPokemon}`);
   return dispatch => {
     request
       .then(
