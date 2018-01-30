@@ -8,8 +8,11 @@ import './SearchBar.css';
 class SearchBar extends Component {
 
   componentWillMount () {
-    const {fetchPokemons} = this.props;
-    fetchPokemons();
+    const {fetchPokemons, listPokemonName} = this.props;
+    //TODO: Be sure it will be 0
+    if(!listPokemonName.length>0) {
+      fetchPokemons();
+    }
   }
 
   handleNewRequest = (request) => {
@@ -18,7 +21,7 @@ class SearchBar extends Component {
   };
 
   render() {
-    const {pokemonsName} = this.props;
+    const {listPokemonName} = this.props;
     const searchBarText = "Look for a Pokemon";
     return (
       <div className='search-bar-component'>
@@ -27,7 +30,7 @@ class SearchBar extends Component {
           floatingLabelText={searchBarText}
           fullWidth={true}
           filter={AutoComplete.fuzzyFilter}
-          dataSource={pokemonsName}
+          dataSource={listPokemonName}
           maxSearchResults={5}
           onNewRequest={this.handleNewRequest}/>
       </div>
@@ -38,7 +41,7 @@ class SearchBar extends Component {
 export default connect(
   (state) => (
     {
-      pokemonsName: selectors.getPokemonsName(state),
+      listPokemonName: selectors.getPokemonsName(state),
     }
   ),
   {fetchPokemons}
