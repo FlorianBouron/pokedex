@@ -14,6 +14,15 @@ class PokemonDetails extends Component {
     fetchPokemonByNameOrId(pokemonName);
   }
 
+  componentWillUpdate(nextProps) {
+    const {pokemonName} = this.props.match.params;
+    const nextPokemonName = nextProps.match.params.pokemonName;
+    if(nextPokemonName!==pokemonName) {
+      const {fetchPokemonByNameOrId} = this.props;
+      fetchPokemonByNameOrId(nextPokemonName);
+    }
+  }
+
   render() {
     const {history, currentPokemon, fetchPokemonByNameOrId} = this.props;
     return (
@@ -22,7 +31,8 @@ class PokemonDetails extends Component {
         <Paper zDepth={1}>
           {currentPokemon ?
           <div className='pokemon-details'>
-            <PokemonInfo pokemon={currentPokemon} fetchPokemonById={fetchPokemonByNameOrId}/>
+            <PokemonInfo pokemon={currentPokemon}
+                         fetchPokemonById={fetchPokemonByNameOrId}/>
           </div> :
           <div className='no-pokemon'>
             <CircularProgress />

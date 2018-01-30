@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SkipPrevious from 'material-ui/svg-icons/av/skip-previous';
 import SkipNext from 'material-ui/svg-icons/av/skip-next';
+import config from '../../config';
 import './PokemonInfo.css';
 
 export default class PokemonInfo extends Component {
@@ -20,7 +21,7 @@ export default class PokemonInfo extends Component {
     return (
       <div className='pokemon-info-component'>
         <div className='pokemon-arrow-back'>
-          <SkipPrevious onClick={this.handleBack}/>
+          {pokemon.id>config.idMinOfPokemon ? <SkipPrevious onClick={this.handleBack}/> : ''}
         </div>
         <div className='pokemon-content'>
           <div className='pokemon-name'>
@@ -47,7 +48,7 @@ export default class PokemonInfo extends Component {
           </div>
         </div>
         <div className='pokemon-arrow-next'>
-          <SkipNext onClick={this.handleNext}/>
+          {pokemon.id<config.idMaxOfPokemon ? <SkipNext onClick={this.handleNext}/> : ''}
         </div>
       </div>
     );

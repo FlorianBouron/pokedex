@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const selectors = {
-  getPokemonsName: (state) => state.pokemons.data ? state.pokemons.data.results.map(function(pokemon) { return pokemon["name"]; }) : [],
+  getPokemonsName: (state) => state.pokemons.data ? state.pokemons.data.results.map(function(pokemon) { return pokemon["name"]; }) : null,
   getCurrentPokemon: (state) => state.pokemons.currentPokemon ? state.pokemons.currentPokemon : null,
 };
 

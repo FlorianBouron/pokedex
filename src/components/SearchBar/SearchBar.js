@@ -9,8 +9,7 @@ class SearchBar extends Component {
 
   componentWillMount () {
     const {fetchPokemons, listPokemonName} = this.props;
-    //TODO: Be sure it will be 0
-    if(!listPokemonName.length>0) {
+    if(!listPokemonName) {
       fetchPokemons();
     }
   }
@@ -30,7 +29,7 @@ class SearchBar extends Component {
           floatingLabelText={searchBarText}
           fullWidth={true}
           filter={AutoComplete.fuzzyFilter}
-          dataSource={listPokemonName}
+          dataSource={listPokemonName ? listPokemonName : []}
           maxSearchResults={5}
           onNewRequest={this.handleNewRequest}/>
       </div>
