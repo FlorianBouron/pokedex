@@ -16,7 +16,7 @@ ReactDOM.render(
   <MuiThemeProvider muiTheme={theme}>
     <Provider store={store}>
       <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
-        {routes(store)}
+        {routes()}
       </BrowserRouter>
     </Provider>
   </MuiThemeProvider>,

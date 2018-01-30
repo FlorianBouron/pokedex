@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
-import SearchBar from '../../components/SearchBar';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +11,6 @@ class App extends Component {
           <h1 className="app-title">Pokedex</h1>
         </header>
         <div className="app-content">
-          <SearchBar />
           {this.props.children}
         </div>
       </div>

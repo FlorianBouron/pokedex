@@ -1,14 +1,19 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Switch, Route, Redirect} from 'react-router';
 import App from "./containers/App";
+import Home from "./containers/Home";
+import PokemonDetails from "./containers/PokemonDetails";
 
-const routes = (store) => {
+const routes = () => {
 
   return (
-    <div>
-      <Route path="/" component={App}>
-      </Route>
-    </div>
+    <App>
+      <Switch>
+        <Route exact path="/" render={props => <Home {...props} />} />
+        <Route path="/pokemon/:pokemonName" render={props => <PokemonDetails {...props} />} />
+        <Redirect from='*' to='/' />
+      </Switch>
+    </App>
   )
 };
 
